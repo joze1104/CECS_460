@@ -114,5 +114,7 @@ int main( void )
 	max = bst_max( p_myTree );
 	printf("After fifth group is erased: %d, %d\r\n", min, max);
 
+	printf("Cheehu");
+
 	while(1);
 }
