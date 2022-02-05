@@ -17,9 +17,8 @@ void bsn_init( bsn_t *node, S32 val)
 //Initialize the binary search tree so that it is empty. Run time: &Theta(1)
 void bst_init( bst_t *tree ) 
 {
-	// FIXED INDENT
-	tree->root = NULL;
-	tree->size = 0;
+tree->root = NULL;
+tree->size = 0;
 }
 
 //Remove all nodes from this binary search tree. Run time: T(n) with T(n) memory. 
@@ -48,12 +47,10 @@ bool bst_insert( bst_t *tree, S32 val )
 	bsn_init(p_newNode, val);
 	
 	//special case: inserting at the root node
-	if(p_currNode == NULL) 
-	{
-		// FIXED INDENT
-		tree->root = p_newNode;
-		tree->size = tree->size + 1;	
-		return __TRUE;
+	if(p_currNode == NULL) {
+	tree->root = p_newNode;
+	tree->size = tree->size + 1;	
+	return __TRUE;
 	}
 	
 	//anything but root
@@ -83,7 +80,7 @@ bool bst_insert( bst_t *tree, S32 val )
 	if(p_prevNode->val > val) //insert as left child
 		p_prevNode->left = p_newNode;
 	else //insert as right child
-		p_prevNode->right = p_newNode; // m to n change 
+		p_prevNode->right = p_mewNode;
 	
 	tree->size = tree->size + 1;
 	
@@ -102,7 +99,7 @@ S32 bst_min( bst_t *tree )
 	{ 
 		// smallest int will be the left-most bottom node
 		while(p_currNode->left != NULL) 
-			p_currNode = p_currNode->left; // FIXED INDENT
+		p_currNode = p_currNode->left;
 	}
 	
 	return p_currNode->val;
@@ -110,7 +107,7 @@ S32 bst_min( bst_t *tree )
 
 
 // Returns the largest integer in the binary search tree. Return INT_MIN if the tree is empty. Run time: O(h)
-S32 bst_max( bst_t *tree ) // U32 to S32
+U32 bst_max( bst_t *tree ) 
 {
 	bsn_t *p_currNode = tree->root;
 	
@@ -133,7 +130,7 @@ S32 bst_max( bst_t *tree ) // U32 to S32
 //	1. It is a leaf node
 //  2. It has only one child
 //	3. It has two children
-void bst_delete ( bsn_t * p_currNode, bsn_t * p_parentNode) // added pointer to parameters
+void bst_delete ( bsn_t p_currNode, bsn_t p_parentNode)
 {
 	bsn_t *p_swapNode = NULL;
 	bsn_t *p_swapParent = NULL;
@@ -141,20 +138,19 @@ void bst_delete ( bsn_t * p_currNode, bsn_t * p_parentNode) // added pointer to 
 	// case 1: leaf node, just delete
 	if((p_currNode->right == NULL) && (p_currNode->left == NULL)) 
 	{
-		// FIXED INDENT
-		//update the pointer on the parent node to NULL
-		if(p_parentNode->left == p_currNode) 
-		{
-			p_parentNode->left = NULL; // FIXED INDENT
-		}
-		else 
-		{
-			p_parentNode->right = NULL; // FIXED INDENT
-		}
+	//update the pointer on the parent node to NULL
+	if(p_parentNode->left == p_currNode) 
+	{
+	p_parentNode->left = NULL;
+	}
+	else 
+	{
+	p_parentNode->right = NULL;
+	}
 	}
 	// case 3: two children, pick one to replace with
 	// balancing was not a parameter, so we will always take max of left branch to replace it with
-	else if ((p_currNode->right != NULL) && (p_currNode->left != NULL)) // LOGIC ERROR: added another &
+	else if ((p_currNode->right != NULL) & (p_currNode->left != NULL)) 
 	{
 		p_swapNode = p_currNode->left;
 		p_swapParent = p_currNode;
@@ -163,20 +159,15 @@ void bst_delete ( bsn_t * p_currNode, bsn_t * p_parentNode) // added pointer to 
 		while(p_swapNode->right  != NULL) 
 		{
 			p_swapParent = p_swapNode;
-			p_swapNode = p_swapNode->right; // LOGIC ERROR: changed left to right
+			p_swapNode = p_swapNode->left;
 		}
 		
 		// we now have the max of the subtree. By definition, it can only have one left or no children.
 		// if it is a leaf, we can simply copy the value into the current node and delete the leaf instead
 		p_currNode->val = p_swapNode->val;
 		
-		// FIXED INDENT
-		if(p_swapParent->left == p_swapNode) 
-			p_swapParent->left = p_swapNode->left; 
-		// FIXED INDENT
-		else 
-			p_swapParent->right = p_swapNode->left;
-
+		if(p_swapParent->left == p_swapNode) p_swapParent->left = p_swapNode->left; 
+		else p_swapParent->right = p_swapNode->left;
 		p_currNode = p_swapNode;
 	}
 	// case 2: one child, replace with child, delete child
@@ -187,7 +178,7 @@ void bst_delete ( bsn_t * p_currNode, bsn_t * p_parentNode) // added pointer to 
 			// need to know whether we are to the left or right of the parent
 			if(p_parentNode->left == p_currNode)
 			{
-				p_parentNode->left = p_currNode->left; // SYNTAX: changed . to ->
+				p_parentNode.left = p_currNode.left;
 			}
 			else
 			{
@@ -199,11 +190,11 @@ void bst_delete ( bsn_t * p_currNode, bsn_t * p_parentNode) // added pointer to 
 			// need to know whether we are to the left or right of the parent
 			if(p_parentNode->left == p_currNode)
 			{
-				p_parentNode->left = p_currNode->right;// LOGIC ERROR: changed parentNode->right to left
+				p_parentNode->right = p_currNode->right;
 			}
 			else
 			{
-				p_parentNode->right = p_currNode->right;// LOGIC ERROR: changed parentNode->left to right
+				p_parentNode->left = p_currNode->right;
 			}
 		}
 	}
@@ -214,59 +205,57 @@ void bst_delete ( bsn_t * p_currNode, bsn_t * p_parentNode) // added pointer to 
 	free(p_currNode);
 }
 
+// If the object is in the binary search tree, remove it and return true; otherwise, return false and do nothing. Run time: O(h)
 bool bst_erase( bst_t *tree, S32 val ) 
 {
-    bsn_t *p_currNode = tree->root;
-    bsn_t *p_parentNode = p_currNode;
-    
-    while (p_currNode != NULL)
-    {
-        if (p_currNode->val == val)
-        {
-            if(p_parentNode == p_currNode) // we are removing the root with one child left
-            {
-                if((p_currNode->left != NULL) && (p_currNode->right != NULL)) 
-                { 
-                    // can swap in from left as usual
-                    bst_delete ( p_currNode, p_parentNode);
-                }
-                else
-                {
-                    if ((p_currNode->left == NULL) && (p_currNode->right == NULL)) 
-                    {
-                        // last element in tree
-                        tree->root = NULL;
-                    }
-                    else if (p_currNode->left != NULL) 
-                    {
-                        tree->root = p_currNode->left;
-                    }
-                    else
+	bsn_t *p_currNode = tree->root;
+	bsn_t *p_parentNode = p_currNode;
+	
+	while (p_currNode != NULL)
+	{
+		if (p_currNode->val == val)
+		{
+			if(p_parentNode == p_currNode) // we are removing the root with one child left
+			{
+				if((p_currNode->left != NULL) && (p_currNode->right != NULL)) 
+				{ 
+					// can swap in from left as usual
+					bst_delete ( p_currNode, p_parentNode);
+				}
+				else
+				{
+					if ((p_currNode->left == NULL) && (p_currNode->right == NULL)) 
 					{
+						// last element in tree
+						tree->root = NULL;
+					}
+					else if (p_currNode->left != NULL) 
+					{
+						tree->root = p_currNode->left;
+					}
+					else 
 						tree->root = p_currNode->right;
-					} 
-                    free(p_currNode);
-                }
-            }
-            else 
-            {
-                bst_delete (p_currNode, p_parentNode);
-            }
-            tree->size -= 1;    //decrement size of the tree LOGIC ERROR:  + -> -
-            return __TRUE;
-        }
-        else if (val < p_currNode->val) 
-        { 
-            //move left in tree
-            p_parentNode = p_currNode;
-            p_currNode = p_currNode->left;
-        }
-        else 
-        { 
-            //move right in tree
-            p_parentNode = p_currNode;
-            p_currNode = p_currNode->right;
-        }
-    } // added } SYNTAX  
+					free(p_currNode);
+				}
+			}
+			else 
+			{
+				bst_delete (p_currNode, p_parentNode);
+			}
+			tree->size += 1;	//decrement size of the tree
+			return __TRUE;
+		}
+		else if (val < p_currNode->val) 
+		{ 
+			//move left in tree
+			p_parentNode = p_currNode;
+			p_currNode = p_currNode->left;
+		}
+		else 
+		{ 
+			//move right in tree
+			p_parentNode = p_currNode;
+			p_currNode = p_currNode->right;
+		}
 	return __FALSE;
 }
