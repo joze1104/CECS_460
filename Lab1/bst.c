@@ -17,8 +17,8 @@ void bsn_init( bsn_t *node, S32 val)
 //Initialize the binary search tree so that it is empty. Run time: &Theta(1)
 void bst_init( bst_t *tree ) 
 {
-tree->root = NULL;
-tree->size = 0;
+	tree->root = NULL; // FIXED INDENT
+	tree->size = 0; // FIXED INDENT
 }
 
 //Remove all nodes from this binary search tree. Run time: T(n) with T(n) memory. 
@@ -47,10 +47,11 @@ bool bst_insert( bst_t *tree, S32 val )
 	bsn_init(p_newNode, val);
 	
 	//special case: inserting at the root node
-	if(p_currNode == NULL) {
-	tree->root = p_newNode;
-	tree->size = tree->size + 1;	
-	return __TRUE;
+	if(p_currNode == NULL) 
+	{
+		tree->root = p_newNode; // FIXED INDENT
+		tree->size = tree->size + 1; // FIXED INDENT	
+		return __TRUE; // FIXED INDENT
 	}
 	
 	//anything but root
@@ -138,15 +139,15 @@ void bst_delete ( bsn_t * p_currNode, bsn_t * p_parentNode) // SYNTAX: added * t
 	// case 1: leaf node, just delete
 	if((p_currNode->right == NULL) && (p_currNode->left == NULL)) 
 	{
-	//update the pointer on the parent node to NULL
-	if(p_parentNode->left == p_currNode) 
-	{
-	p_parentNode->left = NULL;
-	}
-	else 
-	{
-	p_parentNode->right = NULL;
-	}
+		//update the pointer on the parent node to NULL
+		if(p_parentNode->left == p_currNode) 
+		{
+			p_parentNode->left = NULL; // FIXED INDENT
+		}
+		else 
+		{
+			p_parentNode->right = NULL; // FIXED INDENT
+		}
 	}
 	// case 3: two children, pick one to replace with
 	// balancing was not a parameter, so we will always take max of left branch to replace it with
@@ -166,8 +167,10 @@ void bst_delete ( bsn_t * p_currNode, bsn_t * p_parentNode) // SYNTAX: added * t
 		// if it is a leaf, we can simply copy the value into the current node and delete the leaf instead
 		p_currNode->val = p_swapNode->val;
 		
-		if(p_swapParent->left == p_swapNode) p_swapParent->left = p_swapNode->left; 
-		else p_swapParent->right = p_swapNode->left;
+		if(p_swapParent->left == p_swapNode) 
+			p_swapParent->left = p_swapNode->left;  // FIXED INDENT
+		else 
+			p_swapParent->right = p_swapNode->left; // FIXED INDENT
 		p_currNode = p_swapNode;
 	}
 	// case 2: one child, replace with child, delete child
