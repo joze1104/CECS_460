@@ -150,7 +150,7 @@ void bst_delete ( bsn_t * p_currNode, bsn_t * p_parentNode) // SYNTAX: added * t
 	}
 	// case 3: two children, pick one to replace with
 	// balancing was not a parameter, so we will always take max of left branch to replace it with
-	else if ((p_currNode->right != NULL) & (p_currNode->left != NULL)) 
+	else if ((p_currNode->right != NULL) && (p_currNode->left != NULL)) // LOGIC: changed & to &&
 	{
 		p_swapNode = p_currNode->left;
 		p_swapParent = p_currNode;
@@ -159,7 +159,7 @@ void bst_delete ( bsn_t * p_currNode, bsn_t * p_parentNode) // SYNTAX: added * t
 		while(p_swapNode->right  != NULL) 
 		{
 			p_swapParent = p_swapNode;
-			p_swapNode = p_swapNode->left;
+			p_swapNode = p_swapNode->right; // LOGIC: changed left to right
 		}
 		
 		// we now have the max of the subtree. By definition, it can only have one left or no children.
@@ -190,11 +190,11 @@ void bst_delete ( bsn_t * p_currNode, bsn_t * p_parentNode) // SYNTAX: added * t
 			// need to know whether we are to the left or right of the parent
 			if(p_parentNode->left == p_currNode)
 			{
-				p_parentNode->right = p_currNode->right;
+				p_parentNode->left = p_currNode->right; // LOGIC: changed p_parentNode->right to left
 			}
 			else
 			{
-				p_parentNode->left = p_currNode->right;
+				p_parentNode->right = p_currNode->right; // LOGIC: changed p_parentNode->left to right
 			}
 		}
 	}
@@ -242,7 +242,7 @@ bool bst_erase( bst_t *tree, S32 val )
 			{
 				bst_delete (p_currNode, p_parentNode);
 			}
-			tree->size += 1;	//decrement size of the tree
+			tree->size -= 1;	//decrement size of the tree // LOGIC ERROR:changed + -> -
 			return __TRUE;
 		}
 		else if (val < p_currNode->val) 
