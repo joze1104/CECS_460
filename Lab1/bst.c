@@ -80,7 +80,7 @@ bool bst_insert( bst_t *tree, S32 val )
 	if(p_prevNode->val > val) //insert as left child
 		p_prevNode->left = p_newNode;
 	else //insert as right child
-		p_prevNode->right = p_newNode;
+		p_prevNode->right = p_newNode; // SYNTAX: changed p_mewNode->p_newNode
 	
 	tree->size = tree->size + 1;
 	
@@ -107,7 +107,7 @@ S32 bst_min( bst_t *tree )
 
 
 // Returns the largest integer in the binary search tree. Return INT_MIN if the tree is empty. Run time: O(h)
-S32 bst_max( bst_t *tree ) 
+S32 bst_max( bst_t *tree ) // SYNTAX: changed U->S
 {
 	bsn_t *p_currNode = tree->root;
 	
@@ -130,7 +130,7 @@ S32 bst_max( bst_t *tree )
 //	1. It is a leaf node
 //  2. It has only one child
 //	3. It has two children
-void bst_delete ( bsn_t * p_currNode, bsn_t * p_parentNode)
+void bst_delete ( bsn_t * p_currNode, bsn_t * p_parentNode) // SYNTAX: added * to both parameters
 {
 	bsn_t *p_swapNode = NULL;
 	bsn_t *p_swapParent = NULL;
@@ -178,7 +178,7 @@ void bst_delete ( bsn_t * p_currNode, bsn_t * p_parentNode)
 			// need to know whether we are to the left or right of the parent
 			if(p_parentNode->left == p_currNode)
 			{
-				p_parentNode->left = p_currNode->left;
+				p_parentNode->left = p_currNode->left; // SYNTAX: changed . to ->
 			}
 			else
 			{
@@ -257,5 +257,6 @@ bool bst_erase( bst_t *tree, S32 val )
 			p_parentNode = p_currNode;
 			p_currNode = p_currNode->right;
 		}
+	} // added brace for the while loop
 	return __FALSE;
 }
