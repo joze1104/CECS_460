@@ -107,7 +107,7 @@ S32 bst_min( bst_t *tree )
 
 
 // Returns the largest integer in the binary search tree. Return INT_MIN if the tree is empty. Run time: O(h)
-U32 bst_max( bst_t *tree ) 
+S32 bst_max( bst_t *tree ) 
 {
 	bsn_t *p_currNode = tree->root;
 	
