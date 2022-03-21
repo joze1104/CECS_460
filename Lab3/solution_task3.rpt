@@ -1,0 +1,186 @@
+
+
+================================================================
+== Vivado HLS Report for 'matrixMultiply'
+================================================================
+* Date:           Tue Mar 15 18:41:49 2022
+
+* Version:        2018.2 (Build 2258646 on Thu Jun 14 20:25:20 MDT 2018)
+* Project:        Lab3
+* Solution:       solution_task3
+* Product family: aartix7
+* Target device:  xa7a12tcsg325-1q
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|     8.470|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    8|    8|    8|    8|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------------+-----+-----+----------+-----------+-----------+------+----------+
+        |                     |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name      | min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------------+-----+-----+----------+-----------+-----------+------+----------+
+        |- Row_Loop_Col_Loop  |    6|    6|         4|          1|          1|     4|    yes   |
+        +---------------------+-----+-----+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+-------+------+
+|       Name      | BRAM_18K| DSP48E|   FF  |  LUT |
++-----------------+---------+-------+-------+------+
+|DSP              |        -|      -|      -|     -|
+|Expression       |        -|      6|      0|   211|
+|FIFO             |        -|      -|      -|     -|
+|Instance         |        -|      -|      -|     -|
+|Memory           |        -|      -|      -|     -|
+|Multiplexer      |        -|      -|      -|    75|
+|Register         |        0|      -|    371|    64|
++-----------------+---------+-------+-------+------+
+|Total            |        0|      6|    371|   350|
++-----------------+---------+-------+-------+------+
+|Available        |       40|     40|  16000|  8000|
++-----------------+---------+-------+-------+------+
+|Utilization (%)  |        0|     15|      2|     4|
++-----------------+---------+-------+-------+------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-------------------------------+----------+-------+---+----+------------+------------+
+    |         Variable Name         | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-------------------------------+----------+-------+---+----+------------+------------+
+    |tmp_5_1_fu_276_p2              |     *    |      3|  0|  21|          32|          32|
+    |tmp_5_fu_272_p2                |     *    |      3|  0|  21|          32|          32|
+    |c_d1                           |     +    |      0|  0|  32|          32|          32|
+    |i_1_fu_171_p2                  |     +    |      0|  0|  10|           2|           1|
+    |indvar_flatten_next_fu_165_p2  |     +    |      0|  0|  12|           3|           1|
+    |j_1_fu_266_p2                  |     +    |      0|  0|  10|           2|           1|
+    |tmp1_fu_280_p2                 |     +    |      0|  0|  32|          32|          32|
+    |tmp_7_fu_244_p2                |     +    |      0|  0|  12|           3|           2|
+    |tmp_8_fu_255_p2                |     +    |      0|  0|  13|           4|           4|
+    |exitcond_flatten_fu_159_p2     |   icmp   |      0|  0|   9|           3|           4|
+    |exitcond_fu_177_p2             |   icmp   |      0|  0|   9|           2|           3|
+    |tmp_4_fu_216_p2                |    or    |      0|  0|  10|           3|           1|
+    |j_mid2_fu_183_p3               |  select  |      0|  0|   2|           1|           1|
+    |tmp_mid2_v_fu_191_p3           |  select  |      0|  0|   2|           1|           2|
+    |ap_enable_pp0                  |    xor   |      0|  0|   8|           1|           2|
+    |ap_enable_reg_pp0_iter1        |    xor   |      0|  0|   8|           2|           1|
+    +-------------------------------+----------+-------+---+----+------------+------------+
+    |Total                          |          |      6|  0| 211|         155|         151|
+    +-------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------+----+-----------+-----+-----------+
+    |            Name            | LUT| Input Size| Bits| Total Bits|
+    +----------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                   |  21|          4|    1|          4|
+    |ap_enable_reg_pp0_iter1     |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter3     |   9|          2|    1|          2|
+    |ap_phi_mux_i_phi_fu_141_p4  |   9|          2|    2|          4|
+    |i_reg_137                   |   9|          2|    2|          4|
+    |indvar_flatten_reg_126      |   9|          2|    3|          6|
+    |j_reg_148                   |   9|          2|    2|          4|
+    +----------------------------+----+-----------+-----+-----------+
+    |Total                       |  75|         16|   12|         26|
+    +----------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------+----+----+-----+-----------+
+    |           Name           | FF | LUT| Bits| Const Bits|
+    +--------------------------+----+----+-----+-----------+
+    |a_load_1_reg_345          |  32|   0|   32|          0|
+    |a_load_reg_335            |  32|   0|   32|          0|
+    |ap_CS_fsm                 |   3|   0|    3|          0|
+    |ap_enable_reg_pp0_iter0   |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1   |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2   |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter3   |   1|   0|    1|          0|
+    |b_load_1_reg_350          |  32|   0|   32|          0|
+    |b_load_reg_340            |  32|   0|   32|          0|
+    |c_addr_reg_324            |   2|   0|    2|          0|
+    |c_load_reg_360            |  32|   0|   32|          0|
+    |exitcond_flatten_reg_290  |   1|   0|    1|          0|
+    |i_reg_137                 |   2|   0|    2|          0|
+    |indvar_flatten_reg_126    |   3|   0|    3|          0|
+    |j_reg_148                 |   2|   0|    2|          0|
+    |tmp_5_1_reg_365           |  32|   0|   32|          0|
+    |tmp_5_reg_355             |  32|   0|   32|          0|
+    |tmp_mid2_v_reg_299        |   2|   0|    2|          0|
+    |c_addr_reg_324            |  64|  32|    2|          0|
+    |exitcond_flatten_reg_290  |  64|  32|    1|          0|
+    +--------------------------+----+----+-----+-----------+
+    |Total                     | 371|  64|  246|          0|
+    +--------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------+-----+-----+------------+----------------+--------------+
+|  RTL Ports | Dir | Bits|  Protocol  |  Source Object |    C Type    |
++------------+-----+-----+------------+----------------+--------------+
+|ap_clk      |  in |    1| ap_ctrl_hs | matrixMultiply | return value |
+|ap_rst      |  in |    1| ap_ctrl_hs | matrixMultiply | return value |
+|ap_start    |  in |    1| ap_ctrl_hs | matrixMultiply | return value |
+|ap_done     | out |    1| ap_ctrl_hs | matrixMultiply | return value |
+|ap_idle     | out |    1| ap_ctrl_hs | matrixMultiply | return value |
+|ap_ready    | out |    1| ap_ctrl_hs | matrixMultiply | return value |
+|a_address0  | out |    2|  ap_memory |        a       |     array    |
+|a_ce0       | out |    1|  ap_memory |        a       |     array    |
+|a_q0        |  in |   32|  ap_memory |        a       |     array    |
+|a_address1  | out |    2|  ap_memory |        a       |     array    |
+|a_ce1       | out |    1|  ap_memory |        a       |     array    |
+|a_q1        |  in |   32|  ap_memory |        a       |     array    |
+|b_address0  | out |    2|  ap_memory |        b       |     array    |
+|b_ce0       | out |    1|  ap_memory |        b       |     array    |
+|b_q0        |  in |   32|  ap_memory |        b       |     array    |
+|b_address1  | out |    2|  ap_memory |        b       |     array    |
+|b_ce1       | out |    1|  ap_memory |        b       |     array    |
+|b_q1        |  in |   32|  ap_memory |        b       |     array    |
+|c_address0  | out |    2|  ap_memory |        c       |     array    |
+|c_ce0       | out |    1|  ap_memory |        c       |     array    |
+|c_q0        |  in |   32|  ap_memory |        c       |     array    |
+|c_address1  | out |    2|  ap_memory |        c       |     array    |
+|c_ce1       | out |    1|  ap_memory |        c       |     array    |
+|c_we1       | out |    1|  ap_memory |        c       |     array    |
+|c_d1        | out |   32|  ap_memory |        c       |     array    |
++------------+-----+-----+------------+----------------+--------------+
+
